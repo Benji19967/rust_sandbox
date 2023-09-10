@@ -18,9 +18,21 @@ pub fn plus_one(x: i32) -> i32 {
     x + 1
 }
 
-pub fn fibonacci(mut n:  i32) -> i32 {
+pub fn fibonacci(mut n:  u128) -> u128 {
     // 0, 1, 1, 2, 3, 5, ...
     // F_0 = 0, F_1 = 1, F_2 = 1, F_3 = 2, ...
+    
+    // n: i32  --> max is 45th  fibonacci number before overflowing
+    // n: u32  --> max is 46th  fibonacci number before overflowing
+    // n: i64  --> max is 91st  fibonacci number before overflowing 
+    // n: u64  --> max is 92nd  fibonacci number before overflowing 
+    // n: i128 --> max is 183rd fibonacci number before overflowing 
+    // n: u128 --> max is 185th fibonacci number before overflowing 
+    // 185th takes ~50-70 microseconds to compute on MacBook Pro M1 
+     
+    use std::time::Instant;
+    let now = Instant::now();
+
     let mut number = 0;
     let mut next = 1;
     while n > 0 {
@@ -29,5 +41,9 @@ pub fn fibonacci(mut n:  i32) -> i32 {
         number = temp;
         n -= 1;
     }
+
+    let elapsed = now.elapsed();
+    println!("Elapsed: {:.2?}", elapsed);
+
     number
 }

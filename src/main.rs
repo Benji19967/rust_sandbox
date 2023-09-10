@@ -28,7 +28,11 @@ fn main() {
     io::stdin()
         .read_line(&mut user_input)
         .expect("Failed to read line");
-    let nth_fibonacci: i32 = user_input.trim().parse().expect("Input not an integer");
+    let nth_fibonacci: u128 = user_input.trim().parse().expect("Input not an integer");
+    use std::time::Instant;
+    let now = Instant::now();
     println!("The {}th fibonacci number is {}", nth_fibonacci, fibonacci(nth_fibonacci));
+    let elapsed = now.elapsed();
+    println!("Elapsed: {:.2?}", elapsed);
 }
 

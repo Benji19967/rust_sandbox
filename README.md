@@ -4,7 +4,8 @@
 
  - [x] How do I create and use functions?
  - [x] How do I declare and use constants?
- - [ ] How do I read use input?
+ - [x] How do I read use input?
+ - [x] How do I time a function call?
  - [ ] How do I create and use classes?
  - [ ] How do I manage larger projects? 
    - Packages, crates and modules
