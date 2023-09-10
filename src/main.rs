@@ -1,6 +1,17 @@
+// This is the crate root file for this crate
+
+use crate::my_functions::{
+    plus_one, five, print_height, print_hardcoded_string, print_an_integer
+};
+// use crate::my_functions::* // bad practice
+
+pub mod my_functions;
+
+
 const CENTIMETERS_IN_METERS: i32 = 100;
 
 fn main() {
+    // --- FUNCTIONS ---
     println!("Hello World!");
     print_hardcoded_string();
     print_an_integer(7);
@@ -12,22 +23,3 @@ fn main() {
     println!("5 + 1 is: {}", plus_one(5));
 }
 
-fn print_hardcoded_string() {
-    println!("Printing a hardcoded string.");
-}
-
-fn print_an_integer(x: i32) {
-    println!("The value of x is {x}");
-}
-
-fn print_height(height: f32, unit: &str) {
-    println!("The height is: {height}{unit}")
-}
-
-fn five() -> i32 {
-    5
-}
-
-fn plus_one(x: i32) -> i32 {
-    x + 1
-}
