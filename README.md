@@ -2,7 +2,7 @@
  
  Playing around with Rust.
 
- - [ ] How do I create and use functions?
+ - [x] How do I create and use functions?
  - [ ] How do I create and use classes?
  - [ ] How do I create a library?
  - [ ] How do I use traits?
