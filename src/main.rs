@@ -1,7 +1,8 @@
 // This is the crate root file for this crate
 
+use std::io;
 use crate::my_functions::{
-    plus_one, five, print_height, print_hardcoded_string, print_an_integer
+    plus_one, five, print_height, print_hardcoded_string, print_an_integer, fibonacci
 };
 // use crate::my_functions::* // bad practice
 
@@ -21,5 +22,13 @@ fn main() {
 
     println!("{}", five());
     println!("5 + 1 is: {}", plus_one(5));
+
+    println!("Which fibonacci number do you want to compute?");
+    let mut user_input = String::new();
+    io::stdin()
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
+    let nth_fibonacci: i32 = user_input.trim().parse().expect("Input not an integer");
+    println!("The {}th fibonacci number is {}", nth_fibonacci, fibonacci(nth_fibonacci));
 }
 
