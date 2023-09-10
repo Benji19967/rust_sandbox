@@ -29,6 +29,8 @@ pub fn fibonacci(mut n:  u128) -> u128 {
     // n: i128 --> max is 183rd fibonacci number before overflowing 
     // n: u128 --> max is 185th fibonacci number before overflowing 
     // 185th takes ~50-70 microseconds to compute on MacBook Pro M1 
+    // 185th takes ~18-20 microseconds to compute on MacBook Pro M1 when using 
+    // `cargo ... --release`
      
     use std::time::Instant;
     let now = Instant::now();

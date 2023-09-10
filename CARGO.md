@@ -19,3 +19,9 @@ builds a binary in `target`
  `cargo uninstall`
 
  uninstall the binary from `~/.cargo/bin`
+
+ `cargo ... --release`
+
+ run optimized artifacts with the release profile. Example: when running
+ `cargo run --release`, computing fibonacci numbers is more than 2x faster compared to
+ `cargo run`.
