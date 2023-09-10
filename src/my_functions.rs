@@ -31,6 +31,8 @@ pub fn fibonacci(mut n:  u128) -> u128 {
     // 185th takes ~50-70 microseconds to compute on MacBook Pro M1 
     // 185th takes ~18-20 microseconds to compute on MacBook Pro M1 when using 
     // `cargo ... --release`
+    // 1hr later, re-running now only takes 375-500 nanoseconds with `--release`
+    // and 2.5 to 3.5 microseconds without it. I wonder why it's faster now...
     // Python takes similar amount of time: ~30 microseconds
      
     use std::time::Instant;
