@@ -8,6 +8,7 @@
  - [ ] How do I use traits?
  - [ ] How do I use Enums?
  - [ ] How do I create a test and run it?
+ - [ ] Performance comparison with Python.
  
 
  ## `cargo`
