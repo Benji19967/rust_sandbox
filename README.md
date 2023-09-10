@@ -14,8 +14,8 @@
  - [ ] How do I use traits?
  - [ ] How do I use Enums?
  - [ ] How do I create a test and run it?
- - [ ] Performance comparison with Python.
-   - [ ] Computing fibonacci numbers
+ - [x] Performance comparison with Python.
+   - [x] Computing fibonacci numbers
  - [ ] How do I use a logger?
  - [ ] How do I handle errors in a robust manner?
  - [ ] How do I use threads for executing tasks concurrently?
