@@ -33,3 +33,28 @@ pub fn build_user(username: String, email: String) -> User {
         sign_in_count: 1,
     }
 }
+
+pub fn from_other_user(user: User) -> User {
+    User {
+        active: false,
+        ..user
+    }
+    // user no longer valid, data gets moved.
+    // If all data types of the struct implemented `Copy` then `user` would still
+    // be valid
+}
+
+pub fn tuple_structs() {
+    struct Color(i32, i32, i32);
+    struct Point(i32, i32, i32);
+
+    // Different types, eventhough all elements of the tuples have the same types
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+}
+
+pub fn unit_like_structs() {
+    struct AlwaysEqual;
+
+    let subject = AlwaysEqual;
+}
