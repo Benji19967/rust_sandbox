@@ -5,7 +5,7 @@ use crate::my_functions::{
     plus_one, five, print_height, print_hardcoded_string, print_an_integer, fibonacci
 };
 // use crate::my_functions::* // bad practice
-use crate::my_structs::{debug_struct};
+use crate::my_structs::{debug_struct, debug_struct_2};
 
 pub mod my_functions;
 pub mod my_structs;
@@ -35,5 +35,6 @@ fn main() {
 
     // --- STRUCTS ---
     debug_struct();
+    debug_struct_2();
 
 }

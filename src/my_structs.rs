@@ -5,6 +5,13 @@ pub struct User {
     sign_in_count: u64,
 }
 
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+
 pub fn create_user() {
     let user1 = User {
         active: true,
@@ -63,13 +70,7 @@ pub fn unit_like_structs() {
     let _subject = AlwaysEqual;
 }
 
-pub fn debug_struct () {
-    #[derive(Debug)]
-    struct Rectangle {
-        width: u32,
-        height: u32,
-    }
-
+pub fn debug_struct() {
     let rect1 = Rectangle {
         width: 30,
         height: 50,
@@ -79,4 +80,16 @@ pub fn debug_struct () {
     println!("rect1 height: {}", rect1.height);
     println!("rect1 is {:?}", rect1);
     println!("rect1 is {:#?}", rect1);
+}
+
+pub fn debug_struct_2() {
+    // Prints file and line number of debug statements!
+    // `dbg!` returns the owenership of the expression's value
+    let scale = 2;
+    let rect1 = Rectangle {
+        width: dbg!(30 * scale),
+        height: 50,
+    };
+
+    dbg!(&rect1); // Reference, so `dbg!` does not take the owenership of `rect1`
 }
