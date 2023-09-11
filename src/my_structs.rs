@@ -1,4 +1,4 @@
-struct User {
+pub struct User {
     active: bool,
     username: String,
     email: String,
@@ -12,6 +12,10 @@ pub fn create_user() {
         email: String::from("someone@example.com"),
         sign_in_count: 1,
     };
+    println!("{}", user1.active);
+    println!("{}", user1.username);
+    println!("{}", user1.email);
+    println!("{}", user1.sign_in_count);
 }
 
 pub fn create_and_update_user() {
@@ -49,12 +53,30 @@ pub fn tuple_structs() {
     struct Point(i32, i32, i32);
 
     // Different types, eventhough all elements of the tuples have the same types
-    let black = Color(0, 0, 0);
-    let origin = Point(0, 0, 0);
+    let _black = Color(0, 0, 0);
+    let _origin = Point(0, 0, 0);
 }
 
 pub fn unit_like_structs() {
     struct AlwaysEqual;
 
-    let subject = AlwaysEqual;
+    let _subject = AlwaysEqual;
+}
+
+pub fn debug_struct () {
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    println!("rect1 width: {}", rect1.width);
+    println!("rect1 height: {}", rect1.height);
+    println!("rect1 is {:?}", rect1);
+    println!("rect1 is {:#?}", rect1);
 }

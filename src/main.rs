@@ -5,8 +5,10 @@ use crate::my_functions::{
     plus_one, five, print_height, print_hardcoded_string, print_an_integer, fibonacci
 };
 // use crate::my_functions::* // bad practice
+use crate::my_structs::{debug_struct};
 
 pub mod my_functions;
+pub mod my_structs;
 
 
 const CENTIMETERS_IN_METERS: i32 = 100;
@@ -30,5 +32,8 @@ fn main() {
         .expect("Failed to read line");
     let nth_fibonacci: u128 = user_input.trim().parse().expect("Input not an integer");
     println!("The {}th fibonacci number is {}", nth_fibonacci, fibonacci(nth_fibonacci));
-}
 
+    // --- STRUCTS ---
+    debug_struct();
+
+}
