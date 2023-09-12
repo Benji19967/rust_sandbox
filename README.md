@@ -8,9 +8,10 @@
  - [x] How do I time a function call?
  - [x] How do I setup the rust language server in neovim?
  - [x] How do I create and use structs?
- - [ ] How do I use Enums?
+ - [x] How do I use Enums?
+ - [ ] How do I access documentation in the terminal or in vim?
  - [ ] How do I use a logger?
- - [ ] How do I handle errors in a robust manner?
+ - [x] How do I handle errors in a robust manner?
  - [ ] How do I create a test and run it?
  - [ ] Build a CLI tool
  - [ ] How do I manage larger projects? 
