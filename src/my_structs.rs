@@ -11,6 +11,12 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
 
 pub fn create_user() {
     let user1 = User {
@@ -80,6 +86,7 @@ pub fn debug_struct() {
     println!("rect1 height: {}", rect1.height);
     println!("rect1 is {:?}", rect1);
     println!("rect1 is {:#?}", rect1);
+    println!("rect1 area is {:#?}", rect1.area());
 }
 
 pub fn debug_struct_2() {
