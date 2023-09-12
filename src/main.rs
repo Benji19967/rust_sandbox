@@ -6,9 +6,11 @@ use crate::my_functions::{
 };
 // use crate::my_functions::* // bad practice
 use crate::my_structs::{debug_struct, debug_struct_2};
+use crate::my_enums::create_an_enum_with_data_types;
 
 pub mod my_functions;
 pub mod my_structs;
+pub mod my_enums;
 
 
 const CENTIMETERS_IN_METERS: i32 = 100;
@@ -34,7 +36,11 @@ fn main() {
     println!("The {}th fibonacci number is {}", nth_fibonacci, fibonacci(nth_fibonacci));
 
     // --- STRUCTS ---
+    println!("\n--- STRUCTS ---");
     debug_struct();
     debug_struct_2();
 
+    // --- ENUMS ---
+    println!("\n--- ENUMS ---");
+    create_an_enum_with_data_types();
 }
