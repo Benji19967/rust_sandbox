@@ -6,7 +6,8 @@
  - [x] How do I declare and use constants?
  - [x] How do I read use input?
  - [x] How do I time a function call?
- - [ ] How do I create and use structs?
+ - [x] How do I setup the rust language server in neovim?
+ - [x] How do I create and use structs?
  - [ ] How do I use Enums?
  - [ ] How do I use a logger?
  - [ ] How do I handle errors in a robust manner?

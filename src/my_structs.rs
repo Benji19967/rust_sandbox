@@ -45,7 +45,7 @@ pub fn create_and_update_user() {
 pub fn build_user(username: String, email: String) -> User {
     User {
         active: true,
-        username: username,
+        username, // Field init shorthand, same as username: username
         email, // Field init shorthand, same as `email: email`
         sign_in_count: 1,
     }
