@@ -16,9 +16,19 @@ fn main() {
 
     // Read file content into a string
     let data = fs::read_to_string(&args.path).expect("Unable to read file");
-    println!("{}", data);
+
+    let mut counter: u32 = 0;
 
     // Create a Hashmap for words + counts 
+    for line in data.trim().lines() {
+        for word in line.split_whitespace() {
+            println!("{}", word);
+            counter += 1;
+            if counter == 100 {
+                return;
+            }
+        }
+    }
 
     // Iterate string and populate hashmap
 
