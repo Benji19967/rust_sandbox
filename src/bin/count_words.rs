@@ -3,6 +3,8 @@ use std::collections::HashMap;
 
 use clap::Parser;
 
+// TODO: Answer all questions mentioned here:
+// https://benhoyt.com/writings/count-words/
 
 #[derive(Parser)]
 struct Args {
@@ -29,7 +31,7 @@ fn main() {
     // Iterate string and populate hashmap
     for line in data.trim().lines() {
         for word in line.split_whitespace() {
-            let word_str = remove_punctuation(&word);
+            let word_str = remove_punctuation(&word).to_lowercase();
             if !word_str.is_empty() {
                 println!("{}", word_str);
             }
@@ -43,8 +45,13 @@ fn main() {
     // TODO: Print in order. Could use a Tree Map to keep words sorted.
     // TODO: Or if we only print the k most common ones we don't need to sort but can
     // just iterate the values and keep the most common ones.
-    for (k, v) in word_counts.iter() {
-        println!("{k}: {v}");
+    let mut word_counts_vec: Vec<(&String, &u32)> = word_counts.iter().collect(); 
+    word_counts_vec.sort_by(|a, b| b.1.cmp(a.1));
+
+    // Print in reverse order so we see the most common words at the bottom 
+    // of the screen.
+    for (word, count) in word_counts_vec.iter().rev() {
+        println!("{word}: {count}");
     }
 
 }
