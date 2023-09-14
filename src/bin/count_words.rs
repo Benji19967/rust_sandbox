@@ -1,4 +1,3 @@
-use std::fs;
 use std::collections::HashMap;
 
 use clap::Parser;
@@ -25,19 +24,20 @@ fn main() {
     // Read CLI input: which file are we counting words in?
     let args = Args::parse();
 
-    // Read file content into a string
-    // TODO: How can I read line by line instead of the entire file?
-    let data = read_lines(&args.path).expect("Unable to read file");
-
     // Create a Hashmap for words + counts 
     let mut word_counts: HashMap<String, u32> = HashMap::new();
 
-    // Iterate string and populate hashmap
-    for line in data.trim().lines() {
-        for word in line.split_whitespace() {
-            let word_str = remove_punctuation(&word).to_lowercase();
-            if !word_str.is_empty() {
-                *word_counts.entry(word_str).or_insert(0) += 1;
+    // Read file content into a string
+    // TODO: This is deeply nested, can we extract a function?
+    if let Ok(lines) = read_lines(&args.path) {
+        for line in lines {
+            if let Ok(line) = line {
+                for word in line.trim().split_whitespace() {
+                    let word_str = remove_punctuation(&word).to_lowercase();
+                    if !word_str.is_empty() {
+                        *word_counts.entry(word_str).or_insert(0) += 1;
+                    }
+                }
             }
         }
     }
