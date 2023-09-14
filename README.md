@@ -2,8 +2,9 @@
 
 ## Notes / Docs
 
-- [Cargo](docs/CARGO.md)
-- [Counting words](docs/COUNT_WORDS.md)
+- [Cargo](docs/cargo.md)
+- [Counting words](docs/count_words.md)
+- [Why and when to use a buffer](docs/buffer.md)
  
  Playing around with Rust.
 
