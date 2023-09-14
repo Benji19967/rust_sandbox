@@ -15,6 +15,8 @@
  - [x] How do I setup the rust language server in neovim?
  - [x] How do I create and use structs?
  - [x] How do I use Enums?
+ - [ ] How and when do I use the `?` operator for error handling?
+   - [ ] Create an example of handling an error with it and without it
  - [ ] How do I use and create Iterators?
  - [ ] How do I access documentation in the terminal or in vim?
  - [ ] How do I use a logger?
