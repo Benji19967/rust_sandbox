@@ -1,4 +1,9 @@
 # Rust Sandbox 
+
+## Notes / Docs
+
+- [Cargo](docs/CARGO.md)
+- [Counting words](docs/COUNT_WORDS.md)
  
  Playing around with Rust.
 
