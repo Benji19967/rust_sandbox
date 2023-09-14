@@ -8,8 +8,8 @@ https://benhoyt.com/writings/count-words/
 - [ ] How does it order two words with the same frequency?
 - [ ] What’s the performance bottleneck likely to be?
 - [ ] How does it fare in terms of big-O?
- - [ ] Getting the frequency of all words
- - [ ] Getting the frequency of the most common k words
+  - [ ] Getting the frequency of all words
+  - [ ] Getting the frequency of the most common k words
 - [ ] What’s the memory usage?
 - [ ] Roughly how long would your program take to process a 1GB file?
 - [ ] Would your solution still work for 1TB?
