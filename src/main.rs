@@ -11,6 +11,7 @@ use crate::my_enums::create_an_enum_with_data_types;
 pub mod my_functions;
 pub mod my_structs;
 pub mod my_enums;
+pub mod my_io;
 
 
 const CENTIMETERS_IN_METERS: i32 = 100;
