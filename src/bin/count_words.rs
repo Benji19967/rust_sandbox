@@ -3,6 +3,8 @@ use std::collections::HashMap;
 
 use clap::Parser;
 
+use rust_sandbox::my_io::read_lines;
+
 // See questions unders `/docs/COUNT_WORDS.md`
 // TODO: Make the program multi-threaded and count the word frequency for many
 // files. Aggregate the frequency of each word into one count at the end.
@@ -25,7 +27,7 @@ fn main() {
 
     // Read file content into a string
     // TODO: How can I read line by line instead of the entire file?
-    let data = fs::read_to_string(&args.path).expect("Unable to read file");
+    let data = read_lines(&args.path).expect("Unable to read file");
 
     // Create a Hashmap for words + counts 
     let mut word_counts: HashMap<String, u32> = HashMap::new();
