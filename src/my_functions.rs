@@ -52,3 +52,13 @@ pub fn fibonacci(mut n:  u128) -> u128 {
 
     number
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn five_is_five() {
+        assert_eq!(five(), 5);
+    }
+}
