@@ -24,7 +24,8 @@
  - [ ] How do I access documentation in the terminal or in vim?
  - [ ] How do I use a logger?
  - [x] How do I handle errors in a robust manner?
- - [ ] How do I create a test and run it?
+ - [x] How do I create unit tests and run them?
+ - [ ] How do I create integration tests and run them?
  - [ ] Build a CLI tool
  - [ ] How do I manage larger projects? 
    - Packages, crates and modules
