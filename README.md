@@ -15,6 +15,9 @@
  - [x] How do I setup the rust language server in neovim?
  - [x] How do I create and use structs?
  - [x] How do I use Enums?
+ - [ ] How do I use traits?
+   - [ ] How do I use generics?
+   - [ ] How do I use lifetimes?
  - [ ] How and when do I use the `?` operator for error handling?
    - [ ] Create an example of handling an error with it and without it
  - [ ] How do I use and create Iterators?
@@ -28,7 +31,6 @@
  - [ ] How do I use a code formatter?
  - [ ] How do I create a library (crate)?
  - [ ] How do I create and use classes?
- - [ ] How do I use traits?
  - [x] Performance comparison with Python.
    - [x] Computing fibonacci numbers
  - [ ] How do I use threads for executing tasks concurrently?
