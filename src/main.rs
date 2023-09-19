@@ -1,17 +1,16 @@
 // This is the crate root file for this crate
 
-use std::io;
 use crate::my_functions::{
-    plus_one, five, print_height, print_hardcoded_string, print_an_integer, fibonacci
+    fibonacci, five, plus_one, print_an_integer, print_hardcoded_string, print_height,
 };
+use std::io;
 // use crate::my_functions::* // bad practice
-use crate::my_structs::{debug_struct, debug_struct_2};
 use crate::my_enums::create_an_enum_with_data_types;
+use crate::my_structs::{debug_struct, debug_struct_2};
 
+pub mod my_enums;
 pub mod my_functions;
 pub mod my_structs;
-pub mod my_enums;
-
 
 const CENTIMETERS_IN_METERS: i32 = 100;
 
@@ -33,7 +32,11 @@ fn main() {
         .read_line(&mut user_input)
         .expect("Failed to read line");
     let nth_fibonacci: u128 = user_input.trim().parse().expect("Input not an integer");
-    println!("The {}th fibonacci number is {}", nth_fibonacci, fibonacci(nth_fibonacci));
+    println!(
+        "The {}th fibonacci number is {}",
+        nth_fibonacci,
+        fibonacci(nth_fibonacci)
+    );
 
     // --- STRUCTS ---
     println!("\n--- STRUCTS ---");

@@ -17,7 +17,6 @@ impl Rectangle {
     }
 }
 
-
 pub fn create_user() {
     let user1 = User {
         active: true,
@@ -46,7 +45,7 @@ pub fn build_user(username: String, email: String) -> User {
     User {
         active: true,
         username, // Field init shorthand, same as username: username
-        email, // Field init shorthand, same as `email: email`
+        email,    // Field init shorthand, same as `email: email`
         sign_in_count: 1,
     }
 }

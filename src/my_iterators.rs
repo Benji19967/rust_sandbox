@@ -16,11 +16,11 @@ pub fn sum_of_vector(nums: Vec<u32>) -> u32 {
     nums.iter().sum()
 }
 
-pub fn double_vector_elements(nums: Vec<u32>) -> Vec<u32>{
-    nums.iter().map(|x| x*2).collect()
+pub fn double_vector_elements(nums: Vec<u32>) -> Vec<u32> {
+    nums.iter().map(|x| x * 2).collect()
 }
 
-pub fn get_even_elements(nums: Vec<u32>) -> Vec<u32>{
+pub fn get_even_elements(nums: Vec<u32>) -> Vec<u32> {
     nums.into_iter().filter(|x| x % 2 == 0).collect()
 }
 

@@ -18,10 +18,10 @@ pub fn create_an_enum_with_data_types() {
     // These could be 4 separate structs but they wouldn't be grouped together into
     // the `Message` type
     #[derive(Debug)]
-    enum Message { 
+    enum Message {
         _Quit,
-        _Move { x: i32, y: i32 }, // Struct
-        Write(String), // Tuple struct
+        _Move { x: i32, y: i32 },    // Struct
+        Write(String),               // Tuple struct
         _ChangeColor(i32, i32, i32), // Tuple struct
     }
 
