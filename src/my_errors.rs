@@ -31,6 +31,17 @@ pub fn parse_integer_question_operator(num_str: &str) -> Result<i32, std::num::P
     Ok(num)
 }
 
+pub fn double_number_match(num_str: &str) -> Result<i32, std::num::ParseIntError> {
+    match parse_integer(num_str) {
+        Ok(num) => Ok(num * 2),
+        Err(err) => Err(err)
+    }
+}
+
+pub fn double_number(num_str: &str) -> Result<i32, std::num::ParseIntError> {
+    parse_integer(num_str).map(|x| x * 2)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -64,5 +75,15 @@ mod tests {
     #[test]
     fn parse_five() {
         assert_eq!(parse_integer("5"), Ok(5));
+    }
+
+    #[test]
+    fn double_five() {
+        assert_eq!(double_number("5"), Ok(10));
+    }
+
+    #[test]
+    fn double_six() {
+        assert_eq!(double_number_match("6"), Ok(12));
     }
 }
