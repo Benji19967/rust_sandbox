@@ -57,3 +57,18 @@ fn main() {
 
     // What if we are only interested in the top k most frequent elements?
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn remove_commas() {
+        assert_eq!(remove_punctuation("Hello, I am Ben"), "Hello I am Ben");
+    }
+
+    #[test]
+    fn keep_newlines() {
+        assert_eq!(remove_punctuation("Hello\nI am Ben"), "Hello\nI am Ben");
+    }
+}
