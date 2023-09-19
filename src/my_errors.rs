@@ -5,6 +5,10 @@
 // TODO: Create your own Result type with a fixed Error
 // TODO: Create your own Error
 
+pub fn panic_message() {
+    panic!("Panicked!");
+}
+
 pub fn optional_five() -> Option<u32> {
     Some(5)
 }
@@ -32,6 +36,12 @@ mod tests {
     use super::*;
 
     #[test]
+    #[should_panic]
+    fn assert_panicked() {
+        assert_eq!(panic_message(), ());
+    }
+
+    #[test]
     fn get_some() {
         assert_eq!(optional_five(), Some(5));
     }
@@ -49,5 +59,10 @@ mod tests {
     #[test]
     fn unwrap_result() {
         assert_eq!(result_five().unwrap(), 5);
+    }
+
+    #[test]
+    fn parse_five() {
+        assert_eq!(parse_integer("5"), Ok(5));
     }
 }
