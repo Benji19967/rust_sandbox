@@ -51,7 +51,8 @@ fn main() {
     let mut word_counts_vec: Vec<(String, u32)> = word_counts.into_iter().collect();
     word_counts_vec.sort_by(|(_, cnt1), (_, cnt2)| cnt1.cmp(&cnt2).reverse());
     let word_counts_vec_most_frequent: Vec<(String, u32)> = match args.k {
-        Some(k) => word_counts_vec[..k].to_vec(),
+        // TODO: This will panic if there are less than k unique words
+        Some(k) => word_counts_vec[..k].to_vec(), 
         None => word_counts_vec
     };
 
