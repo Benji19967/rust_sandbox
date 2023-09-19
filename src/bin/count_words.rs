@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::path::{Path, PathBuf};
 
 use clap::Parser;
 
@@ -14,7 +15,7 @@ use rust_sandbox::my_io::read_lines;
 struct Args {
     /// The path to the file to read
     #[arg(short, long)]
-    path: String,
+    path: PathBuf,
     /// Find the most common k words
     #[arg(short = 'k', long = "num-most-frequent")]
     k: Option<usize>,
@@ -24,14 +25,12 @@ fn remove_punctuation(s: &str) -> String {
     s.replace(&['(', ')', ',', '\"', '.', ';', ':', '\'', '*'][..], "")
 }
 
-fn main() {
-    let args = Args::parse();
-
+fn compute_word_counts(path: &Path) -> HashMap<String, u32> {
     let mut word_counts: HashMap<String, u32> = HashMap::new();
 
     // Read file content into a string
     // TODO: This is deeply nested, can we extract a function?
-    if let Ok(lines) = read_lines(&args.path) {
+    if let Ok(lines) = read_lines(path) {
         for line in lines {
             if let Ok(line) = line {
                 for word in line.trim().split_whitespace() {
@@ -43,6 +42,16 @@ fn main() {
             }
         }
     }
+
+    word_counts
+}
+
+fn main() {
+    let args = Args::parse();
+
+    // TODO: `main` should contain almost no code -- not very testable as is. 
+
+    let word_counts = compute_word_counts(&args.path);
 
     // Print out results
     // TODO: Print in order. Could use a Tree Map to keep words sorted.
@@ -61,8 +70,6 @@ fn main() {
     for (word, count) in word_counts_vec_most_frequent.iter().rev() {
         println!("{word}: {count}");
     }
-
-    // What if we are only interested in the top k most frequent elements?
 }
 
 #[cfg(test)]
