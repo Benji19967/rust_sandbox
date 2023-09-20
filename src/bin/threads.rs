@@ -1,17 +1,17 @@
-use std::{thread, time::Duration};
+use std::{thread, time::Duration, sync::mpsc::channel};
 
 fn main() {
-    let handle = thread::spawn(|| {
-        println!("Hi");
-        println!("Hi");
-        thread::sleep(Duration::from_secs(1));
-        println!("Hi");
-        thread::sleep(Duration::from_secs(1));
+    let (rx, tx) = channel::<String>();
+
+    let handle = thread::spawn(move || {
+        println!("Hi from thread");
+        rx.send("Hello from channel".to_string()).unwrap();
     });
 
-    println!("Main before");
-
+    println!("Hi before join");
     handle.join().unwrap();
+    println!("Hi after join");
 
-    println!("Main after");
+    let message = tx.recv().unwrap();
+    println!("Message: {}", message);
 }
