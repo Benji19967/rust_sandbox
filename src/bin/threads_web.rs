@@ -1,6 +1,4 @@
-use std::{thread, time::Duration, sync::mpsc::channel, error::Error};
-
-// const URL: &str = "https://www.gutenberg.org/cache/epub/{}/pg{}.txt";
+use std::{thread, error::Error};
 
 fn get_request(url: String) -> Result<(), Box<dyn Error>> {
     let resp = reqwest::blocking::get(url)?.text()?;
