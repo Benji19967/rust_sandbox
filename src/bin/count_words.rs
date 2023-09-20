@@ -52,20 +52,15 @@ pub fn get_most_frequent_words(word_counts: HashMap<String, u32>, k: Option<usiz
     // can just iterate the values and keep the most common ones.
     let mut word_counts_vec: Vec<(String, u32)> = word_counts.into_iter().collect();
     word_counts_vec.sort_by(|(_, cnt1), (_, cnt2)| cnt1.cmp(&cnt2).reverse());
-    let word_counts_vec_most_frequent: Vec<(String, u32)> = match k {
+    match k {
         // TODO: This will panic if there are less than k unique words
         Some(k) => word_counts_vec[..k].to_vec(), 
         None => word_counts_vec
-    };
-
-    word_counts_vec_most_frequent
-
+    }
 }
 
 fn main() {
     let args = Args::parse();
-
-    // TODO: `main` should contain almost no code -- not very testable as is. 
 
     let word_counts = compute_word_counts(&args.path);
     let word_counts_vec_most_frequent = get_most_frequent_words(word_counts, args.k);
