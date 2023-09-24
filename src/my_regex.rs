@@ -1,18 +1,6 @@
-use regex::Regex;
-
-// https://docs.rs/regex/latest/regex/
-
-fn main() {
-    // Extract a phone number
-    //let phone1 = "This is a phone number: +44 999 832 7777"
-    //let phone2 = "This is a phone number: +449998327777"
-    //let phone3 = "This is a phone number: +(44)-999-832-7777"
-
-}
-
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use regex::Regex;
 
     //
     // is_match: does a pattern match?

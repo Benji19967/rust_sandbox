@@ -1,13 +1,15 @@
 # Rust Sandbox 
 
+## Rust podcasts
+
+https://rustacean-station.org/
+
 ## Notes / Docs
 
 - [Cargo](docs/cargo.md)
 - [Counting words](docs/count_words.md)
 - [Why and when to use a buffer](docs/buffer.md)
  
- Playing around with Rust.
-
  - [x] How do I create and use functions?
  - [x] How do I declare and use constants?
  - [x] How do I read use input?
@@ -21,6 +23,8 @@
  - [x] How do I create unit tests and run them?
  - [x] How do I use threads for executing tasks concurrently?
  - [x] How do I access documentation in the terminal or in vim?
+ - [ ] Write a Python extension in Rust using PyO3
+   - [ ] Look into Rayon
  - [ ] How do I use traits?
    - [ ] How do I use generics?
    - [ ] How do I use lifetimes?
@@ -36,4 +40,3 @@
  - [ ] How do I create a library (crate)?
  - [ ] How do I create and use classes?
  - [ ] Build a multi-threaded web server
- - [ ] Write a Python extension in Rust using PyO3

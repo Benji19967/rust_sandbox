@@ -1,4 +1,4 @@
-use std::{thread, time::Duration, sync::mpsc::channel};
+use std::{thread, sync::mpsc::channel};
 
 fn main() {
     let (rx, tx) = channel::<String>();
