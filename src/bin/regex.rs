@@ -62,4 +62,26 @@ mod tests {
         let matches: Vec<_> = re.find_iter("Ben Ben").collect();
         assert_eq!(matches, vec![]);
     }
+    
+    //
+    // captures: find first match and return that match as well as all capture groups
+    //
+    #[test]
+    fn captures1() {
+        // [^'] matches any char that is not ' (since ^ negates)
+        let re = Regex::new(r"'([^']+)'\s+\((\d{4})\)").unwrap();
+        let captures = re.captures("The name is: 'Ben' (1996).").unwrap();
+        assert_eq!(captures.get(0).unwrap().as_str(), "'Ben' (1996)");
+        assert_eq!(captures.get(1).unwrap().as_str(), "Ben");
+        assert_eq!(captures.get(2).unwrap().as_str(), "1996");
+    }
+    #[test]
+    fn captures2() {
+        // Named captures: add ?<a_name> in the group
+        let re = Regex::new(r"'(?<username>[^']+)'\s+\((?<year>\d{4})\)").unwrap();
+        let captures = re.captures("The name is: 'Ben' (1996).").unwrap();
+        assert_eq!(captures.get(0).unwrap().as_str(), "'Ben' (1996)");
+        assert_eq!(captures.name("username").unwrap().as_str(), "Ben");
+        assert_eq!(captures.name("year").unwrap().as_str(), "1996");
+    }
 }
