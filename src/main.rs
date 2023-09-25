@@ -4,13 +4,16 @@ use crate::my_functions::{
     fibonacci, five, plus_one, print_an_integer, print_hardcoded_string, print_height,
 };
 use std::io;
+use std::time::Instant;
 // use crate::my_functions::* // bad practice
 use crate::my_enums::create_an_enum_with_data_types;
 use crate::my_structs::{debug_struct, debug_struct_2};
+use crate::my_rayon::{sum_of_squares_sequential, sum_of_squares};
 
 pub mod my_enums;
 pub mod my_functions;
 pub mod my_structs;
+pub mod my_rayon;
 
 const CENTIMETERS_IN_METERS: i32 = 100;
 
@@ -46,4 +49,16 @@ fn main() {
     // --- ENUMS ---
     println!("\n--- ENUMS ---");
     create_an_enum_with_data_types();
+
+    // --- RAYON ---
+    println!("\n--- RAYON ---");
+    let vector: Vec<u64> = (1..399999999).map(|x| x*x).collect();
+
+    let now = Instant::now();
+    sum_of_squares(&vector);
+    println!("Now: {}", now.elapsed().as_nanos());
+    let now = Instant::now();
+    sum_of_squares_sequential(&vector);
+    println!("Now: {}", now.elapsed().as_nanos());
+
 }
