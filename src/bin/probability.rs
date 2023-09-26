@@ -19,14 +19,14 @@ fn main() -> Result<()>{
     // io::stdin().read_line(&mut input)?;
     // let num_simulations: u32 = input.trim().parse()?;
 
-    for take_if_equal_or_greater_than in 1..20 {
+    for take_if_equal_or_greater_than in 1..21 {
         let mut total_winnings = 0;
         for _ in 0..num_simulations {
             let mut winnings = 0;
             let mut dice = 1;
 
             for _ in 0..100 {
-                if dice > take_if_equal_or_greater_than {
+                if dice >= take_if_equal_or_greater_than {
                     winnings += dice;
                 } else {
                     dice = rand::thread_rng().gen_range(1..21);
@@ -35,7 +35,7 @@ fn main() -> Result<()>{
             total_winnings += winnings;
         }
         let avg_winnings = total_winnings / num_simulations;
-        writeln!(io::stdout(), "Take >{}, Winnings: {}", take_if_equal_or_greater_than, avg_winnings)?;
+        writeln!(io::stdout(), "Take >={}, Winnings: {}", take_if_equal_or_greater_than, avg_winnings)?;
     }
     Ok(())
 }
