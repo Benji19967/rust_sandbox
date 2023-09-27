@@ -19,6 +19,16 @@ fn main() -> Result<()> {
     // Your options for each round are:
     // - get the amount of money the die is showing
     // - reroll
+    // What is your best strategy and how much do you expect to win using it?
+    //
+    // Game 2:
+    // Now, when you take money, you take the die off the table (and have to now use 
+    // a round to re-roll)
+    //
+    // Game 3:
+    // Similar to Game 1, but now, when you take money, the casino gets to choose 
+    // whether they want to re-roll or not (it does NOT take up a round if they 
+    // choose to re-roll.)
 
     let args = Args::parse();
 
