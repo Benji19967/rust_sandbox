@@ -25,6 +25,7 @@ https://rustacean-station.org/
  - [x] How do I access documentation in the terminal or in vim?
  - [x] How do I benchmark code using Criterion?
  - [x] How do use Rayon to speed up a function?
+ - [x] How do I read json data using Serde?
  - [ ] Write a Python extension in Rust using PyO3
    - [ ] Look into Rayon
  - [ ] How do I use traits?
