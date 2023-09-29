@@ -1,0 +1,14 @@
+{
+    "name": "John",
+    "siblings": [
+        "Brad",
+        "Chad"
+    ],
+    "address": {
+        "street": "Vera",
+        "number": 1350,
+        "country": "Argentina",
+        "floor": null,
+        "current": true
+    }
+}
