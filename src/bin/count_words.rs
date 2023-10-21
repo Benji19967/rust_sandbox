@@ -46,11 +46,24 @@ fn compute_word_counts(path: &Path) -> HashMap<String, u32> {
     word_counts
 }
 
-pub fn get_most_frequent_words(word_counts: HashMap<String, u32>, k: Option<usize>) -> Vec<(String, u32)> {
+/// Taking `<T: Into<String>` allows us to pass a hashmap with keys of string literals (or
+/// anything that can be converted _into_ a `String`). 
+/// 
+/// Example: 
+/// ```
+/// get_most_frequent_words(HashMap::from(["hello", 8]), None)
+/// ```
+/// rather than
+/// ```
+/// get_most_frequent_words(HashMap::from([String::from("hello"), 8]), None)
+/// ```
+/// In the function we then use `s.into()` to convert from a literal to a `String`.
+///
+pub fn get_most_frequent_words<T: Into<String>>(word_counts: HashMap<T, u32>, k: Option<usize>) -> Vec<(String, u32)> {
     // TODO: Print in order. Could use a Tree Map to keep words sorted.
     // TODO: Or if we only print the k most common ones we don't need to sort but
     // can just iterate the values and keep the most common ones.
-    let mut word_counts_vec: Vec<(String, u32)> = word_counts.into_iter().collect();
+    let mut word_counts_vec: Vec<(String, u32)> = word_counts.into_iter().map(|(k, v)| (k.into(), v)).collect();
     word_counts_vec.sort_by(|(_, cnt1), (_, cnt2)| cnt1.cmp(&cnt2).reverse());
     match k {
         // TODO: This will panic if there are less than k unique words
@@ -89,18 +102,18 @@ mod tests {
     #[test]
     fn most_frequent() {
         assert_eq!(get_most_frequent_words(HashMap::from([
-            (String::from("hello"), 3), 
-            (String::from("hi"), 7), 
-            (String::from("howdy"), 5)
+            ("hello", 3), 
+            ("hi", 7), 
+            ("howdy", 5)
         ]), Some(1)), vec![(String::from("hi"), 7)]);
     }
 
     #[test]
     fn most_frequent_2() {
         assert_eq!(get_most_frequent_words(HashMap::from([
-            (String::from("hello"), 3), 
-            (String::from("hi"), 7), 
-            (String::from("howdy"), 5)
+            ("hello", 3), 
+            ("hi", 7), 
+            ("howdy", 5)
         ]), Some(2)), vec![
             (String::from("hi"), 7),
             (String::from("howdy"), 5)
@@ -109,9 +122,9 @@ mod tests {
     #[test]
     fn most_frequent_all() {
         assert_eq!(get_most_frequent_words(HashMap::from([
-            (String::from("hello"), 3), 
-            (String::from("hi"), 7), 
-            (String::from("howdy"), 5)
+            ("hello", 3), 
+            ("hi", 7), 
+            ("howdy", 5)
         ]), None), vec![
             (String::from("hi"), 7),
             (String::from("howdy"), 5),
