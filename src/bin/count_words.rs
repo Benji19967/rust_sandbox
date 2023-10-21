@@ -85,4 +85,37 @@ mod tests {
     fn keep_newlines() {
         assert_eq!(remove_punctuation("Hello\nI am Ben"), "Hello\nI am Ben");
     }
+
+    #[test]
+    fn most_frequent() {
+        assert_eq!(get_most_frequent_words(HashMap::from([
+            (String::from("hello"), 3), 
+            (String::from("hi"), 7), 
+            (String::from("howdy"), 5)
+        ]), Some(1)), vec![(String::from("hi"), 7)]);
+    }
+
+    #[test]
+    fn most_frequent_2() {
+        assert_eq!(get_most_frequent_words(HashMap::from([
+            (String::from("hello"), 3), 
+            (String::from("hi"), 7), 
+            (String::from("howdy"), 5)
+        ]), Some(2)), vec![
+            (String::from("hi"), 7),
+            (String::from("howdy"), 5)
+        ]);
+    }
+    #[test]
+    fn most_frequent_all() {
+        assert_eq!(get_most_frequent_words(HashMap::from([
+            (String::from("hello"), 3), 
+            (String::from("hi"), 7), 
+            (String::from("howdy"), 5)
+        ]), None), vec![
+            (String::from("hi"), 7),
+            (String::from("howdy"), 5),
+            (String::from("hello"), 3) 
+        ]);
+    }
 }
