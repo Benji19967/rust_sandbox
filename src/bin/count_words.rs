@@ -13,7 +13,6 @@ use rust_sandbox::my_io::read_lines;
 
 
 const PUNCTUATION: &[char; 9] = &['(', ')', ',', '\"', '.', ';', ':', '\'', '*'];
-
 #[derive(Parser)]
 struct Args {
     /// The path to the file to read
@@ -24,8 +23,13 @@ struct Args {
     k: Option<usize>,
 }
 
-fn remove_punctuation(s: &str) -> String {
-    s.replace(PUNCTUATION, "")
+
+fn main() {
+    let args = Args::parse();
+
+    let word_counts = compute_word_counts(&args.path);
+    let word_counts_vec_most_frequent = get_most_frequent_words(word_counts, args.k);
+    display_word_counts(word_counts_vec_most_frequent)
 }
 
 fn compute_word_counts(path: &Path) -> HashMap<String, u32> {
@@ -77,15 +81,14 @@ pub fn get_most_frequent_words<T: Into<String>>(word_counts: HashMap<T, u32>, k:
     }
 }
 
-fn main() {
-    let args = Args::parse();
+fn remove_punctuation(s: &str) -> String {
+    s.replace(PUNCTUATION, "")
+}
 
-    let word_counts = compute_word_counts(&args.path);
-    let word_counts_vec_most_frequent = get_most_frequent_words(word_counts, args.k);
-
-    // Print in reverse order so we see the most common words at the bottom
-    // of the screen.
-    for (word, count) in word_counts_vec_most_frequent.iter().rev() {
+/// Print in reverse order so we see the most common words at the bottom
+/// of the screen.
+fn display_word_counts(word_counts: Vec<(String, u32)>) {
+    for (word, count) in word_counts.iter().rev() {
         println!("{word}: {count}");
     }
 }
