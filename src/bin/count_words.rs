@@ -11,6 +11,9 @@ use rust_sandbox::my_io::read_lines;
 // files. Aggregate the frequency of each word into one count at the end.
 // Compare performance between the single-threaded and multi-threaded versions.
 
+
+const PUNCTUATION: &[char; 9] = &['(', ')', ',', '\"', '.', ';', ':', '\'', '*'];
+
 #[derive(Parser)]
 struct Args {
     /// The path to the file to read
@@ -22,7 +25,7 @@ struct Args {
 }
 
 fn remove_punctuation(s: &str) -> String {
-    s.replace(&['(', ')', ',', '\"', '.', ';', ':', '\'', '*'][..], "")
+    s.replace(PUNCTUATION, "")
 }
 
 fn compute_word_counts(path: &Path) -> HashMap<String, u32> {
@@ -66,8 +69,10 @@ pub fn get_most_frequent_words<T: Into<String>>(word_counts: HashMap<T, u32>, k:
     let mut word_counts_vec: Vec<(String, u32)> = word_counts.into_iter().map(|(k, v)| (k.into(), v)).collect();
     word_counts_vec.sort_by(|(_, cnt1), (_, cnt2)| cnt1.cmp(&cnt2).reverse());
     match k {
-        // TODO: This will panic if there are less than k unique words
-        Some(k) => word_counts_vec[..k].to_vec(), 
+        Some(k) => match k {
+            k if k < word_counts_vec.len() => word_counts_vec[..k].to_vec(),
+            _ => word_counts_vec 
+        }
         None => word_counts_vec
     }
 }
