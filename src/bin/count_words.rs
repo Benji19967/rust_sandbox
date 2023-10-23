@@ -28,7 +28,6 @@ struct Args {
     k: Option<usize>,
 }
 
-
 fn main() {
     let args = Args::parse();
 
@@ -59,9 +58,9 @@ fn compute_word_counts(path: &Path) -> WordCountMap {
 }
 
 /// Taking `<T: Into<String>` allows us to pass a hashmap with keys of string literals (or
-/// anything that can be converted _into_ a `String`). 
-/// 
-/// Example: 
+/// anything that can be converted _into_ a `String`).
+///
+/// Example:
 /// ```
 /// get_most_frequent_words(HashMap::from(["hello", 8]), None)
 /// ```
@@ -71,15 +70,21 @@ fn compute_word_counts(path: &Path) -> WordCountMap {
 /// ```
 /// In the function we then use `s.into()` to convert from a literal to a `String`.
 ///
-pub fn get_most_frequent_words<T: Into<String>>(word_counts: HashMap<T, u32>, k: Option<usize>) -> WordCountVec { 
-    let mut word_counts_vec: WordCountVec = word_counts.into_iter().map(|(k, v)| (k.into(), v)).collect();
+pub fn get_most_frequent_words<T: Into<String>>(
+    word_counts: HashMap<T, u32>,
+    k: Option<usize>,
+) -> WordCountVec {
+    let mut word_counts_vec: WordCountVec = word_counts
+        .into_iter()
+        .map(|(k, v)| (k.into(), v))
+        .collect();
     word_counts_vec.sort_by(|(_, cnt1), (_, cnt2)| cnt1.cmp(&cnt2).reverse());
     match k {
         Some(k) => match k {
             k if k < word_counts_vec.len() => word_counts_vec[..k].to_vec(),
-            _ => word_counts_vec 
-        }
-        None => word_counts_vec
+            _ => word_counts_vec,
+        },
+        None => word_counts_vec,
     }
 }
 
@@ -111,34 +116,34 @@ mod tests {
 
     #[test]
     fn most_frequent() {
-        assert_eq!(get_most_frequent_words(HashMap::from([
-            ("hello", 3), 
-            ("hi", 7), 
-            ("howdy", 5)
-        ]), Some(1)), vec![(String::from("hi"), 7)]);
+        assert_eq!(
+            get_most_frequent_words(
+                HashMap::from([("hello", 3), ("hi", 7), ("howdy", 5)]),
+                Some(1)
+            ),
+            vec![(String::from("hi"), 7)]
+        );
     }
 
     #[test]
     fn most_frequent_2() {
-        assert_eq!(get_most_frequent_words(HashMap::from([
-            ("hello", 3), 
-            ("hi", 7), 
-            ("howdy", 5)
-        ]), Some(2)), vec![
-            (String::from("hi"), 7),
-            (String::from("howdy"), 5)
-        ]);
+        assert_eq!(
+            get_most_frequent_words(
+                HashMap::from([("hello", 3), ("hi", 7), ("howdy", 5)]),
+                Some(2)
+            ),
+            vec![(String::from("hi"), 7), (String::from("howdy"), 5)]
+        );
     }
     #[test]
     fn most_frequent_all() {
-        assert_eq!(get_most_frequent_words(HashMap::from([
-            ("hello", 3), 
-            ("hi", 7), 
-            ("howdy", 5)
-        ]), None), vec![
-            (String::from("hi"), 7),
-            (String::from("howdy"), 5),
-            (String::from("hello"), 3) 
-        ]);
+        assert_eq!(
+            get_most_frequent_words(HashMap::from([("hello", 3), ("hi", 7), ("howdy", 5)]), None),
+            vec![
+                (String::from("hi"), 7),
+                (String::from("howdy"), 5),
+                (String::from("hello"), 3)
+            ]
+        );
     }
 }
