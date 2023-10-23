@@ -5,14 +5,19 @@ use clap::Parser;
 
 use rust_sandbox::my_io::read_lines;
 
-// See questions unders `/docs/COUNT_WORDS.md`
-
+// TODO: Answer questions unders `/docs/COUNT_WORDS.md`
 // TODO: Make the program multi-threaded and count the word frequency for many
 // files. Aggregate the frequency of each word into one count at the end.
 // Compare performance between the single-threaded and multi-threaded versions.
+// TODO: Could use a Tree Map to keep words sorted.
+// TODO: Or if we only print the k most common ones we don't need to sort but
+// can just iterate the values and keep the most common ones.
 
+type WordCountMap = HashMap<String, u32>;
+type WordCountVec = Vec<(String, u32)>;
 
 const PUNCTUATION: &[char; 9] = &['(', ')', ',', '\"', '.', ';', ':', '\'', '*'];
+
 #[derive(Parser)]
 struct Args {
     /// The path to the file to read
@@ -32,8 +37,8 @@ fn main() {
     display_word_counts(word_counts_vec_most_frequent)
 }
 
-fn compute_word_counts(path: &Path) -> HashMap<String, u32> {
-    let mut word_counts: HashMap<String, u32> = HashMap::new();
+fn compute_word_counts(path: &Path) -> WordCountMap {
+    let mut word_counts: WordCountMap = HashMap::new();
 
     // Read file content into a string
     // TODO: This is deeply nested, can we extract a function?
@@ -66,11 +71,8 @@ fn compute_word_counts(path: &Path) -> HashMap<String, u32> {
 /// ```
 /// In the function we then use `s.into()` to convert from a literal to a `String`.
 ///
-pub fn get_most_frequent_words<T: Into<String>>(word_counts: HashMap<T, u32>, k: Option<usize>) -> Vec<(String, u32)> {
-    // TODO: Print in order. Could use a Tree Map to keep words sorted.
-    // TODO: Or if we only print the k most common ones we don't need to sort but
-    // can just iterate the values and keep the most common ones.
-    let mut word_counts_vec: Vec<(String, u32)> = word_counts.into_iter().map(|(k, v)| (k.into(), v)).collect();
+pub fn get_most_frequent_words<T: Into<String>>(word_counts: HashMap<T, u32>, k: Option<usize>) -> WordCountVec { 
+    let mut word_counts_vec: WordCountVec = word_counts.into_iter().map(|(k, v)| (k.into(), v)).collect();
     word_counts_vec.sort_by(|(_, cnt1), (_, cnt2)| cnt1.cmp(&cnt2).reverse());
     match k {
         Some(k) => match k {
@@ -87,7 +89,7 @@ fn remove_punctuation(s: &str) -> String {
 
 /// Print in reverse order so we see the most common words at the bottom
 /// of the screen.
-fn display_word_counts(word_counts: Vec<(String, u32)>) {
+fn display_word_counts(word_counts: WordCountVec) {
     for (word, count) in word_counts.iter().rev() {
         println!("{word}: {count}");
     }
