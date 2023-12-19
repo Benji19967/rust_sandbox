@@ -4,6 +4,10 @@
 
 https://rustacean-station.org/
 
+## Recommended crates
+
+https://blessed.rs/crates
+
 ## Notes / Docs
 
 - [Cargo](docs/cargo.md)
